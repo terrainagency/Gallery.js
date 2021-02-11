@@ -14,22 +14,28 @@ Gallery.js is a collection of agnostic gallery objects built for use with GSAP a
 
 ```javascript
 import {Gallery} from './ghost/components/Gallery.js'
+
+const gallery = new Gallery(container, {})
 ```
 
-# 1. HTML Structure
+# 1. Basic HTML Structure
 
 `@gallery` is used to target the container of the gallery. `@panels` is used to target the container of the hover panel elements where event listeners will be added. Both of these targets can be customized.
 
 ```html
 <div class="@gallery relative w-1/4 my-48 mx-auto">
     <div class="@panels absolute flex items-stretch w-full h-full">
-        <div class="flex-1"></div>
-        <!-- The number of panel divs must match number of images below -->
+        <!-- Panels will be generated here -->
     </div>
 
     <div class="relative overflow-hidden w-full pb-full pointer-events-none">
         <img class="absolute object-cover h-full w-full" src="">
         <!-- Images -->
+    </div>
+
+    <div class="@nav relative">
+        <div class="w-4 h-8 bg-black">
+        <!-- Declare the button style -->
     </div>
 </div>
 ```
@@ -40,13 +46,32 @@ import {Gallery} from './ghost/components/Gallery.js'
 const container = document.querySelector(".\\@gallery")
 
 const gallery = new Gallery(container, {
-    panels: '.\\@panels'
+    panels: '.\\@panels',
+    nav: '.\\@nav',
+    next: '.\\@next',
+    prev: '.\\@prev',
 })
 ```
 
 Key | Type | Default | Description
 ------------ | ------------ | ------------ | ------------
-panels | string | `.\\@panels` | Container element for panels
+panels | string | undefined | Container element for hover panels
+current | num | false | Start position for the gallery
+nav | string | undefined | Query string for nav bullet container
+next | string | undefined | Query string for next button
+prev | string | undefined | Query string for next button
+
+# Responsive design
+
+To make Gallery.js responsive, you can build different gallery instances depending on the size of the window.
+
+```javascript
+// 1. Your resize function
+
+// 2. If window > X, Create mobile gallery
+
+// 2. If window > X, Create desktop gallery
+```
 
 # Status
 
