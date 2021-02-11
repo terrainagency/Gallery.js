@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="tailwind.css" />
+</head>
+<style>
+    /* .\@gallery {
+        position: relative;
+        width: 500px;
+        margin: 150px auto;
+    }
+    .\@gallery .image {
+        position: absolute;
+        width: 100%;
+    }
+    .\@gallery .image img {
+        position: relative;
+        width: 100%;
+        height: auto;
+    } */
+</style>
+<body>
+
+
+    <div class="@gallery relative w-1/4 my-48 mx-auto">
+        <div class="@panels absolute flex items-stretch w-full h-full">
+            <div class="flex-1"></div>
+            <div class="flex-1"></div>
+            <div class="flex-1"></div>
+            <div class="flex-1"></div>
+            <div class="flex-1"></div>
+            <div class="flex-1"></div>
+        </div>
+
+        <div class="relative overflow-hidden w-full pb-full pointer-events-none">
+            <img class="absolute object-cover h-full w-full" src="https://cdn.shopify.com/s/files/1/0003/2725/4068/products/Dakota_Waxed_Canvas_Military_Sea_Bag_Backpack_Russet_Brown_With_Saddle_Tan_Leather_-_1-of-6_2000x.jpg?v=1571710363">
+            <img class="absolute object-cover h-full w-full opacity-0" src="https://cdn.shopify.com/s/files/1/0003/2725/4068/products/Dakota_Waxed_Canvas_Military_Sea_Bag_Backpack_Russet_Brown_With_Saddle_Tan_Leather_-_2-of-6_2000x.jpg?v=1571710363">
+            <img class="absolute object-cover h-full w-full opacity-0" src="https://cdn.shopify.com/s/files/1/0003/2725/4068/products/Dakota_Waxed_Canvas_Military_Sea_Bag_Backpack_Russet_Brown_With_Saddle_Tan_Leather_-_3-of-6_2000x.jpg?v=1571710363">
+            <img class="absolute object-cover h-full w-full opacity-0" src="https://cdn.shopify.com/s/files/1/0003/2725/4068/products/Dakota_Waxed_Canvas_Military_Sea_Bag_Backpack_Russet_Brown_With_Saddle_Tan_Leather_-_4-of-6_2000x.jpg?v=1571710363">
+            <img class="absolute object-cover h-full w-full opacity-0" src="https://cdn.shopify.com/s/files/1/0003/2725/4068/products/Dakota_Waxed_Canvas_Military_Sea_Bag_Backpack_Russet_Brown_With_Saddle_Tan_Leather_-_5-of-6_2000x.jpg?v=1571710363">
+            <img class="absolute object-cover h-full w-full opacity-0" src="https://cdn.shopify.com/s/files/1/0003/2725/4068/products/Dakota_Waxed_Canvas_Military_Sea_Bag_Backpack_Russet_Brown_With_Saddle_Tan_Leather_-_6-of-6_2000x.jpg?v=1571710363">
+        </div>
+    </div>
+
+    <script src="gallery.js"></script>
+</body>
+</html>
