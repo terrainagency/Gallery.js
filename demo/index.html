@@ -23,6 +23,10 @@
         width: 100%;
         height: auto;
     } */
+
+    .active {
+        opacity: 1;
+    }
 </style>
 <body>
 
@@ -42,12 +46,12 @@
         </div>
 
         <div class="@nav relative">
-            <div class="w-6 h-2 m-4 rounded-full bg-black cursor-pointer">
+            <div class="inline-block w-6 h-2 my-4 mx-1 rounded-full bg-black cursor-pointer opacity-10"></div>
         </div>
         <button class="@prev relative cursor-pointer">prev</button>
         <button class="@next relative cursor-pointer">next</button>
     </div>
 
-    <script src="gallery.js"></script>
+    <script type="module" src="./gallery.js"></script>
 </body>
 </html>

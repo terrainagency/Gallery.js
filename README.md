@@ -8,6 +8,8 @@ Dependencies: none
 
 Demo: https://terrainagency.com/ghost/objects/gallery/demo
 
+> Note: Tailwind's spacing utilities must be extended to use `pb` aspect ratios
+
 # Usage
 
 Gallery.js is a collection of agnostic gallery objects built for use with GSAP and Tailwind.
@@ -50,6 +52,8 @@ const gallery = new Gallery(container, {
     nav: '.\\@nav',
     next: '.\\@next',
     prev: '.\\@prev',
+    loop: true,
+    autoplay: false,
 })
 ```
 
@@ -58,15 +62,21 @@ Key | Type | Default | Description
 panels | string | undefined | Container element for hover panels
 current | num | false | Start position for the gallery
 nav | string | undefined | Query string for nav bullet container
+navAction | Function | .classList.add('active') | Action to take when a nav bullet is active
 next | string | undefined | Query string for next button
 prev | string | undefined | Query string for next button
+loop | boolean | undefined | Determines if the gallery loops when breaching max or min
+
 
 # Responsive design
 
 To make Gallery.js responsive, you can build different gallery instances depending on the size of the window.
 
 ```javascript
-// 1. Your resize function
+// 1. Import the resize window query
+import {windowInit} from './utils/window.js'
+
+windowInit()
 
 // 2. If window > X, Create mobile gallery
 

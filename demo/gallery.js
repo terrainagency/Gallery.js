@@ -1,3 +1,7 @@
+import {windowInit} from './utils/window.js'
+
+windowInit()
+
 window.addEventListener('DOMContentLoaded', function() {
 
     class Gallery {
@@ -34,9 +38,14 @@ window.addEventListener('DOMContentLoaded', function() {
 
             // 2. If navigation exists, add functionality 
             if(this.nav !== undefined) {
+                console.log(" NAV EXISTS ")
+                let el = this.nav.querySelector('div')
                 for(var i = 0; i < this.images.length-1; i++) {
                     console.log(i)
+                    this.nav.appendChild(el.cloneNode(true))
                 }
+
+                this.bullets = this.nav.querySelectorAll('div')
             }
             
             // 3. If prev button exists, add functionality
@@ -56,15 +65,19 @@ window.addEventListener('DOMContentLoaded', function() {
             }
         }
         init() {
+            this.play(this.current)
             console.log(this)
         }
         play() {
             if(this.current < 0) {this.current = this.images.length-1} 
             else if(this.current > this.images.length-1) {this.current = 0}
 
-            this.images.forEach(image => {
+            this.images.forEach((image, i) => {
+                this.bullets[i].classList.remove('active')
+
                 image.style.opacity = 0
             })
+            this.bullets[this.current].classList.add('active')
             this.images[this.current].style.opacity = 1
         }
         next() {
