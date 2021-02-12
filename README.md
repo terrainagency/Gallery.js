@@ -167,3 +167,5 @@ v0.2:
 Thumbnail v0.1: 
 - [ ] Bullets as generated thumbnails
 - [ ] Max bullets (auto scrolling)
+
+[<- Back to Ghost](https://github.com/terrainagency/Ghost)
