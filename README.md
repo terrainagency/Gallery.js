@@ -12,7 +12,7 @@ Demo: https://terrainagency.com/ghost/objects/gallery/demo
 
 # Usage
 
-Gallery.js is a collection of agnostic gallery objects built for use with GSAP and Tailwind.
+Gallery.js is a collection of agnostic gallery objects built for use with GSAP and Tailwind. Gallery.js was built to allow for entirely different functionality at different window sizes.
 
 ```javascript
 import {Gallery} from './ghost/components/Gallery.js'
@@ -50,10 +50,17 @@ const container = document.querySelector(".\\@gallery")
 const gallery = new Gallery(container, {
     panels: '.\\@panels',
     nav: '.\\@nav',
-    next: '.\\@next',
     prev: '.\\@prev',
-    loop: true,
-    autoplay: false,
+    next: '.\\@next',
+    onPlay: (self) => {
+        self.images.forEach((image, i) => {
+            if(self.bullets !== undefined) {self.bullets[i].classList.remove('active')}
+
+            image.style.opacity = 0
+        })
+        if(self.bullets !== undefined) {self.bullets[self.current].classList.add('active')}
+        self.images[self.current].style.opacity = 1
+    },
 })
 ```
 
@@ -61,12 +68,58 @@ Key | Type | Default | Description
 ------------ | ------------ | ------------ | ------------
 panels | string | undefined | Container element for hover panels
 current | num | false | Start position for the gallery
+onPlay | function | undefined | Callback triggered on play event
 nav | string | undefined | Query string for nav bullet container
 navAction | Function | .classList.add('active') | Action to take when a nav bullet is active
 next | string | undefined | Query string for next button
 prev | string | undefined | Query string for next button
 loop | boolean | undefined | Determines if the gallery loops when breaching max or min
+touch | {} | undefined | Enables touch event listeners
+autoplay | num | undefined | Enables autoplay 
+zoom* | boolean | undefined | Enables pinch zooming on mobile
 
+> *Proposed feature
+
+# Ex: Touch Events
+
+```javascript
+const gallery = new Gallery(container, {
+    panels: '.\\@panels',
+    nav: '.\\@nav',
+    prev: '.\\@prev',
+    next: '.\\@next',
+    onPlay: (self) => {
+        self.images.forEach((image, i) => {
+            if(self.bullets !== undefined) {self.bullets[i].classList.remove('active')}
+
+            image.style.opacity = 0
+        })
+        if(self.bullets !== undefined) {self.bullets[self.current].classList.add('active')}
+        self.images[self.current].style.opacity = 1
+    },
+    touch: {
+        container: '.\\@images',
+        startDelay: 100,
+        endDelay: 500,
+        onStart: () => {
+            gallery.prevBtn.classList.add('hidden')
+            gallery.nextBtn.classList.add('hidden')
+        },
+        onEnd: () => {
+            gallery.prevBtn.classList.remove('hidden')
+            gallery.nextBtn.classList.remove('hidden')
+        },
+    },
+})
+```
+
+Key | Type | Default | Description
+------------ | ------------ | ------------ | ------------
+container | string | undefined | Container element for touch events
+startDelay | num | undefined | Delay before running onStart()
+endDelay | num | undefined | Delay before running onEnd()
+onStart | function | undefined | Callback for touchstart
+onEnd | function | undefined | Callback for touchend
 
 # Responsive design
 
@@ -91,6 +144,16 @@ Ghost's code is non-obtrusive, and does not create any actions without your dire
 
 v0.1:
 - [x] Basic multi-state gallery
-- [ ] Event callbacks for advanced animation
+- [x] Enable type change at breakpoints
+- [x] Event callbacks for advanced animation
+- [x] Panel-based touch events
+- [x] Touch event callbacks
+
+
+v0.2: 
+- [ ] Pinch to zoom
 - [ ] Hide prev/next instead of all
-- [ ] Enable type change at breakpoints
+
+Thumbnail v0.1: 
+- [ ] Bullets as generated thumbnails
+- [ ] Max bullets (auto scrolling)
