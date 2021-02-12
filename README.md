@@ -126,14 +126,24 @@ onEnd | function | undefined | Callback for touchend
 To make Gallery.js responsive, you can build different gallery instances depending on the size of the window.
 
 ```javascript
-// 1. Import the resize window query
-import {windowInit} from './utils/window.js'
+// 1. Imports
+import { WindowQuery } from './components/WindowQuery.js'
+import { Gallery } from './components/Gallery.js'
 
-windowInit()
+// 2. Define query sizes
+const app = new WindowQuery({
+    mobile: '375px',
+    desktop: '768px',
+})
 
-// 2. If window > X, Create mobile gallery
+// 3. Define gallery instances for each query size
+app.mobile = () => {
+    const gallery = new Gallery(container, {})
+}
+app.desktop = () => {
+    const gallery = new Gallery(container, {})
+}
 
-// 2. If window > X, Create desktop gallery
 ```
 
 # Status
